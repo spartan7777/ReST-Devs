@@ -35,9 +35,10 @@ WEEK 3: 	3/28 – 4/3
 
 WEEK 4: 	4/4 – 4/10
 [ ] Create jersey classes for web service
-[ ] Build logic in jersey classes to use for filtering, sorting, etc
+[ ] Build logic in jersey classes to use for filtering, sorting, and conversion to JSON
 [ ] Create unit tests for web service
 [ ] Start writing documentation
+[ ] Initial AWS Deploy
 [ ]	Update Weekly TimeLogs
 
 WEEK 5: 	4/11 – 4/13
@@ -46,7 +47,7 @@ WEEK 5: 	4/11 – 4/13
 [ ]	Final check up (or revision) on issues/problems in design
 [ ]	Final check up (or revision) on issues/problems in function
 [ ]	Final check up (or revision) on issues/problems in the deliverables
-[ ] Deploy to AWS
+[ ] AWS Final Deploy
 [ ] Final review on documentation
 [ ]	Update Weekly TimeLogs
 
