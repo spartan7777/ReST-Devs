@@ -20,39 +20,33 @@ WEEK 1: 	3/14 – 3/20
 [x]	Update Weekly TimeLogs
 
 WEEK 2: 	3/21 – 3/27
-[ ]	Discuss and establish problem statement
-[ ]	Discuss and establish user stories
-[ ]	Discuss data the web service will handle
-[ ]	Discuss code and flow
-[ ]	Discuss and Create Model Classes
-[ ]	Discuss and Create Controllers
-[ ]	Discuss and Create View JSPs
+[ ]	Discuss and establish problem statement, project plan, and scope
 [ ]	Update Weekly TimeLogs
 
 
 WEEK 3: 	3/28 – 4/3
-[ ]	Code Review for POJOs
-[ ]	Combine parts of the application
-[ ]	Create Unit tests and Test Classes
-[ ]	Check on test success and look for appropriate code coverage
+[ ]	Discuss data the web service will handle
+[ ] Discuss data the web service will output
+[ ]	Discuss code and flow
+[ ]	Determine POJOs
+[ ]	Create POJOs based on data we use
+[ ]	Create Unit tests for consumed data/service client
 [ ]	Update Weekly TimeLogs
 
 WEEK 4: 	4/4 – 4/10
-[ ]	Combine all updated parts of the application / web service
-[ ]	Design/Performance Review for all parts of the web service.
-[ ]	Check up on Test side classes
-[ ]	Check on code coverage
-[ ]	Check up (or revision) on issues/problems in design
-[ ]	Check up (or revision) on issues/problems in function
-[ ]	Check up (or revision) on issues/problems in the deliverables
+[ ] Create jersey classes for web service
+[ ] Build logic in jersey classes to use for filtering, sorting, etc
+[ ] Create unit tests for web service
+[ ] Start writing documentation
 [ ]	Update Weekly TimeLogs
 
 WEEK 5: 	4/11 – 4/13
-[ ]	Final Design/Performance Review for all parts of the web service.
-[ ]	Final Review of Production side performance and feel of flow and code 
-[ ]	Final review on Test side classes
+[ ]	Design/Performance Review for all parts of the web service.
+[ ]	Combine all updated parts of the application / web service
 [ ]	Final check up (or revision) on issues/problems in design
 [ ]	Final check up (or revision) on issues/problems in function
 [ ]	Final check up (or revision) on issues/problems in the deliverables
+[ ] Deploy to AWS
+[ ] Final review on documentation
 [ ]	Update Weekly TimeLogs
 
