@@ -20,45 +20,39 @@ WEEK 1: 	3/14 – 3/20
 [x]	Update Weekly TimeLogs
 
 WEEK 2: 	3/21 – 3/27
-	Discuss and establish problem statement
-	Discuss and establish user stories
-	Discuss data the web service will handle
-	Discuss code and flow
-	Discuss and Create Model Classes
-	Discuss and Create Controllers
-	Discuss and Create View JSPs
-	Update Weekly TimeLogs
+[ ]	Discuss and establish problem statement
+[ ]	Discuss and establish user stories
+[ ]	Discuss data the web service will handle
+[ ]	Discuss code and flow
+[ ]	Discuss and Create Model Classes
+[ ]	Discuss and Create Controllers
+[ ]	Discuss and Create View JSPs
+[ ]	Update Weekly TimeLogs
 
 
 WEEK 3: 	3/28 – 4/3
-	Code Review for Model Classes
-	Code Review for Controller Classes
-	Code Review for View JSPs
-	Combine parts of the application
-	Create Test side classes 
-	Create Unit tests and Test Classes
-	Check on test success and look for appropriate code coverage
-	Update Weekly TimeLogs
+[ ]	Code Review for POJOs
+[ ]	Combine parts of the application
+[ ]	Create Unit tests and Test Classes
+[ ]	Check on test success and look for appropriate code coverage
+[ ]	Update Weekly TimeLogs
 
 WEEK 4: 	4/4 – 4/10
-	Code Review #2 for Model Classes
-	Code Review #2 for Controller Classes
-	Code Review #2 for View JSPs
-	Combine all updated parts of the application / web service
-	Design/Performance Review for all parts of the web service.
-	Check up on Test side classes
-	Check on code coverage
-	Check up (or revision) on issues/problems in design
-	Check up (or revision) on issues/problems in function
-	Check up (or revision) on issues/problems in the deliverables
-	Update Weekly TimeLogs
+[ ]	Combine all updated parts of the application / web service
+[ ]	Design/Performance Review for all parts of the web service.
+[ ]	Check up on Test side classes
+[ ]	Check on code coverage
+[ ]	Check up (or revision) on issues/problems in design
+[ ]	Check up (or revision) on issues/problems in function
+[ ]	Check up (or revision) on issues/problems in the deliverables
+[ ]	Update Weekly TimeLogs
 
 WEEK 5: 	4/11 – 4/13
-	Final Design/Performance Review for all parts of the web service.
-	Final Review of Production side performance and feel of flow and code 
-	Final review on Test side classes
-	Final check up (or revision) on issues/problems in design
-	Final check up (or revision) on issues/problems in function
-	Final check up (or revision) on issues/problems in the deliverables
-	Update Weekly TimeLogs
+[ ]	Final Design/Performance Review for all parts of the web service.
+[ ]	Final Review of Production side performance and feel of flow and code 
+[ ]	Final review on Test side classes
+[ ]	Final check up (or revision) on issues/problems in design
+[ ]	Final check up (or revision) on issues/problems in function
+[ ]	Final check up (or revision) on issues/problems in the deliverables
+[ ]	Update Weekly TimeLogs
 
