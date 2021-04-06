@@ -18,10 +18,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class IndustriesRest {
 
     private List<IndustryDataItem> industryData = new ArrayList<>();
+    private Map<String, String> industryNameAndId = new TreeMap<>();
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     public IndustriesRest() {
-
+        putIndustryNameAndIdIntoMap();
     }
 
     public void getIndustries() throws Exception {
@@ -32,7 +33,18 @@ public class IndustriesRest {
         String response = target.request(MediaType.APPLICATION_JSON).get(String.class);
         ObjectMapper mapper = new ObjectMapper();
         Industry resultList = mapper.readValue(response, Industry.class);
-        logger.info(resultList.getData());
         industryData = resultList.getData();
+    }
+
+    private void putIndustryNameAndIdIntoMap() {
+        try {
+            getIndustries();
+            for(IndustryDataItem industry : industryData) {
+                industryNameAndId.put(industry.getIndustryGroup(), industry.getiDIndustryGroup());
+            }
+            logger.info(industryNameAndId);
+        } catch (Exception e) {
+            logger.info(e);
+        }
     }
 }
