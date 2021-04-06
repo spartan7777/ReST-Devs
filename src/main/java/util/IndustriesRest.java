@@ -34,13 +34,4 @@ public class IndustriesRest {
         logger.info(resultList.getData());
         return resultList.getData();
     }
-
-    public static void main(String[] args) {
-        IndustriesRest testRest = new IndustriesRest();
-        try {
-            testRest.getIndustries();
-        } catch (Exception e){
-            System.out.println(e);
-        }
-    }
 }
