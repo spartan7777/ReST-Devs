@@ -6,16 +6,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Industry{
 
 	@JsonProperty("data")
-	private List<DataItem> data;
+	private List<IndustryDataItem> data;
 
 	@JsonProperty("source")
 	private List<SourceItem> source;
 
-	public void setData(List<DataItem> data){
+	public void setData(List<IndustryDataItem> data){
 		this.data = data;
 	}
 
-	public List<DataItem> getData(){
+	public List<IndustryDataItem> getData(){
 		return data;
 	}
 

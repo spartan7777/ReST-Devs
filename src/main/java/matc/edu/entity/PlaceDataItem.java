@@ -2,7 +2,7 @@ package matc.edu.entity;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class DataItem{
+public class PlaceDataItem {
 
 	@JsonProperty("PUMS Industry")
 	private String pUMSIndustry;

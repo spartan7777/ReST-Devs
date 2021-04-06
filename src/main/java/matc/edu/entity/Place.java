@@ -6,16 +6,16 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class Place {
 
 	@JsonProperty("data")
-	private List<DataItem> data;
+	private List<PlaceDataItem> data;
 
 	@JsonProperty("source")
 	private List<SourceItem> source;
 
-	public void setData(List<DataItem> data){
+	public void setData(List<PlaceDataItem> data){
 		this.data = data;
 	}
 
-	public List<DataItem> getData(){
+	public List<PlaceDataItem> getData(){
 		return data;
 	}
 
