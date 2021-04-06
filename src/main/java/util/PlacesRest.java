@@ -2,10 +2,8 @@ package util;
 
 import java.util.*;
 
-import matc.edu.entity.IndustryDataItem;
 import matc.edu.entity.Place;
 import matc.edu.entity.PlaceDataItem;
-import matc.edu.entity.Industry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
