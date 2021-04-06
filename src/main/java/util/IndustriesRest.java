@@ -17,13 +17,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 public class IndustriesRest {
 
+    private List<IndustryDataItem> industryData = new ArrayList<>();
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     public IndustriesRest() {
 
     }
 
-    public List<IndustryDataItem> getIndustries() throws Exception {
+    public void getIndustries() throws Exception {
         String targetString = "https://datausa.io/api/data?measure=Average%20Wage&drilldowns=Industry%20Group&Year=2019";
         Client client = ClientBuilder.newClient();
         WebTarget target =
@@ -32,6 +33,6 @@ public class IndustriesRest {
         ObjectMapper mapper = new ObjectMapper();
         Industry resultList = mapper.readValue(response, Industry.class);
         logger.info(resultList.getData());
-        return resultList.getData();
+        industryData = resultList.getData();
     }
 }
