@@ -27,7 +27,7 @@ public class PlacesRest {
         String targetString =
                 "https://datausa.io/api/data?PUMS%20Industry=" +
                 tempIndustry +
-                "&drilldowns=PUMA&measure=Total%20Population,ygipop%20RCA,Record%20Count&Record%20Count>=5";
+                "&drilldowns=PUMA&measure=Total%20Population,ygipop%20RCA,Record%20Count";
         Client client = ClientBuilder.newClient();
         WebTarget target =
                 client.target(targetString);
