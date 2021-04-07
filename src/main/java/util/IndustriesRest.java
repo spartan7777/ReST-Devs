@@ -3,11 +3,10 @@ package util;
 import java.util.*;
 
 import matc.edu.entity.IndustryDataItem;
-import matc.edu.entity.PlaceDataItem;
 import matc.edu.entity.Industry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
+import org.json.simple.JSONObject;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -19,10 +18,13 @@ public class IndustriesRest {
 
     private List<IndustryDataItem> industryData = new ArrayList<>();
     private Map<String, String> industryNameAndId = new TreeMap<>();
+    //data will be structured as a map of industry names as keys which correspond to a list of maps,
+    //one map for
+    private Map<String, List<Map<String, String>>> industryNameIdAvgWage = new TreeMap<>();
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     public IndustriesRest() {
-        putIndustryNameAndIdIntoMap();
+        //putIndustryNameAndIdIntoMap();
     }
 
     public void getIndustries() throws Exception {
@@ -46,5 +48,28 @@ public class IndustriesRest {
         } catch (Exception e) {
             logger.info(e);
         }
+    }
+
+    private void putIndustryNameIdAndAvgWageIntoJSON() {
+        try {
+            getIndustries();
+            JSONObject industriesJSON = new JSONObject();
+            JSONObject idAndAvgWageJSON = new JSONObject();
+            String JSONString;
+            for (IndustryDataItem industry : industryData) {
+
+                idAndAvgWageJSON.put("Industry ID", industry.getiDIndustryGroup());
+                idAndAvgWageJSON.put("Industry Average Wage", industry.getAverageWage());
+                industriesJSON.put(industry.getIndustryGroup(), idAndAvgWageJSON);
+
+            }
+            logger.info("I WORK: " + industriesJSON);
+        } catch (Exception e) {
+            logger.info(e);
+        }
+    }
+    public static void main(String[] args) {
+        IndustriesRest test = new IndustriesRest();
+        test.putIndustryNameIdAndAvgWageIntoJSON();
     }
 }
