@@ -1,7 +1,9 @@
 package util;
 
+import java.math.MathContext;
+import java.text.DecimalFormat;
 import java.util.*;
-
+import java.lang.Math;
 import matc.edu.entity.Place;
 import matc.edu.entity.PlaceDataItem;
 import org.apache.logging.log4j.LogManager;
@@ -13,15 +15,27 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 public class PlacesRest {
     private final Logger logger = LogManager.getLogger(this.getClass());
     private final String tempIndustry = "5415";
+    private final int MIN_POPULATION = 1000;
+    private final int MIN_RECORD_COUNT = 20;
+    private List<PlaceDataItem> placesData;
     public PlacesRest() {
+        try {
+            getPlaces(tempIndustry);
+        } catch (Exception e) {
+            logger.info(e);
+        }
 
     }
 
-    public List<PlaceDataItem> getPlaces(String industryId) throws Exception {
+    public void getPlaces(String industryId) throws Exception {
         String targetString =
                 "https://datausa.io/api/data?PUMS%20Industry=" +
                         industryId +
@@ -32,8 +46,49 @@ public class PlacesRest {
         String response = target.request(MediaType.APPLICATION_JSON).get(String.class);
         ObjectMapper mapper = new ObjectMapper();
         Place resultList = mapper.readValue(response, Place.class);
-        logger.info(resultList.getData());
-        return resultList.getData();
+        placesData = resultList.getData();
     }
 
+    private void putPlaceNameStateAndPopulationIntoJSON() {
+        Set<String> sortedSet = new TreeSet<>();
+        DecimalFormat df = new DecimalFormat("#.####");
+        for (PlaceDataItem place : placesData) {
+            if ((place.getTotalPopulation() > MIN_POPULATION) && (place.getRecordCount() > MIN_RECORD_COUNT)) {
+                String jsonObjectString = "{"
+                        + "\""
+                        + place.getPUMA().substring(0, place.getPUMA().length() - 9) //takes state abbrev and PUMA off
+                        + "\""
+                        + ": {\"State\": "
+                        + "\""
+                        + place.getPUMA().substring((place.getPUMA().length() - 2), place.getPUMA().length())
+                        + "\""
+                        + ", \"Population\": "
+                        + "\""
+                        + place.getTotalPopulation()
+                        + "\""
+                        + ", \"Record Count\": "
+                        + "\""
+                        + place.getRecordCount()
+                        + "\""
+                        + ", \"Companies Per Capita\": "
+                        + "\""
+                        + df.format(((double) place.getRecordCount() / (double) place.getTotalPopulation()))
+                        + "\""
+                        + "}}";
+                sortedSet.add(jsonObjectString);
+            }
+        }
+        JSONParser parser = new JSONParser();
+        try {
+            JSONArray sortedJSON = (JSONArray) parser.parse(sortedSet.toString());
+            logger.info("Sorted json " + sortedJSON);
+        } catch (ParseException e) {
+            logger.info(e);
+        }
+    }
+
+    public static void main(String[] args) {
+        PlacesRest test = new PlacesRest();
+        test.putPlaceNameStateAndPopulationIntoJSON();
+    }
 }
