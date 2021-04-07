@@ -6,13 +6,17 @@ import matc.edu.entity.IndustryDataItem;
 import matc.edu.entity.Industry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+
+//import javax.json.JsonArray;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.simple.parser.JSONParser;
 
 public class IndustriesRest {
 
@@ -55,15 +59,32 @@ public class IndustriesRest {
             getIndustries();
             JSONObject industriesJSON = new JSONObject();
             JSONObject idAndAvgWageJSON = new JSONObject();
-            String JSONString;
+            String JSONString = "Industries: [";
+            Set<String> sortedSet = new TreeSet<>();
             for (IndustryDataItem industry : industryData) {
+                String jsonObjectString = "{"
+                        + "\""
+                        + industry.getIndustryGroup()
+                        + "\""
+                        + ": {\"id\": "
+                        + "\""
+                        + industry.getiDIndustryGroup()
+                        + "\""
+                        + ", \"Average Wage\": "
+                        + "\""
+                        + industry.getAverageWage()
+                        + "\""
+                        + "}}";
+                sortedSet.add(jsonObjectString);
 
                 idAndAvgWageJSON.put("Industry ID", industry.getiDIndustryGroup());
                 idAndAvgWageJSON.put("Industry Average Wage", industry.getAverageWage());
                 industriesJSON.put(industry.getIndustryGroup(), idAndAvgWageJSON);
 
             }
-            logger.info("I WORK: " + industriesJSON);
+            JSONParser parser = new JSONParser();
+            JSONArray sortedJSON = (JSONArray) parser.parse(sortedSet.toString());
+            logger.info("Sorted json " + sortedJSON);
         } catch (Exception e) {
             logger.info(e);
         }
