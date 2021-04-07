@@ -37,9 +37,10 @@ public class IndustriesRest {
 
     private void putIndustryNameIdAndAvgWageIntoJSON() {
         try {
-            getIndustries();
-            Set<String> sortedSet = new TreeSet<>();
+            getIndustries(); //method gets all industries and puts them in instance variable industryData
+            Set<String> sortedSet = new TreeSet<>(); //TreeSet used for natural-order sorting
             for (IndustryDataItem industry : industryData) {
+                //Create string containing our data to be converted into JSON
                 String jsonObjectString = "{"
                         + "\""
                         + industry.getIndustryGroup()
