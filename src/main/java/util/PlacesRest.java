@@ -22,10 +22,12 @@ import org.json.simple.parser.ParseException;
 
 public class PlacesRest {
     private final Logger logger = LogManager.getLogger(this.getClass());
-    private final String tempIndustry = "5415";
+    private final String tempIndustry = "5415"; //Computer Systems Design, because why not, right?
     private final int MIN_POPULATION = 1000;
     private final int MIN_RECORD_COUNT = 20;
     private List<PlaceDataItem> placesData;
+
+    //TODO remove this logic from constructor once main method no longer needed
     public PlacesRest() {
         try {
             getPlaces(tempIndustry);
@@ -51,16 +53,18 @@ public class PlacesRest {
 
     private void putPlaceNameStateAndPopulationIntoJSON() {
         Set<String> sortedSet = new TreeSet<>();
-        DecimalFormat df = new DecimalFormat("#.####");
+        DecimalFormat df = new DecimalFormat("#.####"); //for formatting of companies per capita to usable sig figures
         for (PlaceDataItem place : placesData) {
+            //Weeds out negligible results and keeps our results manageable
             if ((place.getTotalPopulation() > MIN_POPULATION) && (place.getRecordCount() > MIN_RECORD_COUNT)) {
+                //Create JSON string
                 String jsonObjectString = "{"
                         + "\""
                         + place.getPUMA().substring(0, place.getPUMA().length() - 9) //takes state abbrev and PUMA off
                         + "\""
                         + ": {\"State\": "
                         + "\""
-                        + place.getPUMA().substring((place.getPUMA().length() - 2), place.getPUMA().length())
+                        + place.getPUMA().substring((place.getPUMA().length() - 2)) //gets state abbrev
                         + "\""
                         + ", \"Population\": "
                         + "\""
