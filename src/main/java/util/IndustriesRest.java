@@ -7,9 +7,6 @@ import matc.edu.entity.Industry;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
-
-//import javax.json.JsonArray;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -20,15 +17,11 @@ import org.json.simple.parser.JSONParser;
 
 public class IndustriesRest {
 
-    private List<IndustryDataItem> industryData = new ArrayList<>();
-    private Map<String, String> industryNameAndId = new TreeMap<>();
-    //data will be structured as a map of industry names as keys which correspond to a list of maps,
-    //one map for
-    private Map<String, List<Map<String, String>>> industryNameIdAvgWage = new TreeMap<>();
+    private List<IndustryDataItem> industryData;
     private final Logger logger = LogManager.getLogger(this.getClass());
 
     public IndustriesRest() {
-        //putIndustryNameAndIdIntoMap();
+
     }
 
     public void getIndustries() throws Exception {
@@ -42,24 +35,9 @@ public class IndustriesRest {
         industryData = resultList.getData();
     }
 
-    private void putIndustryNameAndIdIntoMap() {
-        try {
-            getIndustries();
-            for(IndustryDataItem industry : industryData) {
-                industryNameAndId.put(industry.getIndustryGroup(), industry.getiDIndustryGroup());
-            }
-            logger.info(industryNameAndId);
-        } catch (Exception e) {
-            logger.info(e);
-        }
-    }
-
     private void putIndustryNameIdAndAvgWageIntoJSON() {
         try {
             getIndustries();
-            JSONObject industriesJSON = new JSONObject();
-            JSONObject idAndAvgWageJSON = new JSONObject();
-            String JSONString = "Industries: [";
             Set<String> sortedSet = new TreeSet<>();
             for (IndustryDataItem industry : industryData) {
                 String jsonObjectString = "{"
@@ -76,11 +54,6 @@ public class IndustriesRest {
                         + "\""
                         + "}}";
                 sortedSet.add(jsonObjectString);
-
-                idAndAvgWageJSON.put("Industry ID", industry.getiDIndustryGroup());
-                idAndAvgWageJSON.put("Industry Average Wage", industry.getAverageWage());
-                industriesJSON.put(industry.getIndustryGroup(), idAndAvgWageJSON);
-
             }
             JSONParser parser = new JSONParser();
             JSONArray sortedJSON = (JSONArray) parser.parse(sortedSet.toString());
