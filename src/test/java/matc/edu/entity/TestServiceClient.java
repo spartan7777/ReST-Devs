@@ -31,13 +31,13 @@ public class TestServiceClient {
     public void testPlaceDataItemJSON() throws Exception {
         Client client = ClientBuilder.newClient();
         WebTarget target =
-                client.target("https://datausa.io/api/data?PUMS%20Industry=25&drilldowns=PUMA&measure=Total%20Population,ygipop%20RCA,Record%20Count");
+                client.target("https://datausa.io/api/data?PUMS%20Industry=5415&drilldowns=PUMA&measure=Total%20Population,ygipop%20RCA,Record%20Count");
         String response = target.request(MediaType.APPLICATION_JSON).get(String.class);
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        PlaceDataItem place = mapper.readValue(response, PlaceDataItem.class);
-        assertNotNull(place);
-        assertEquals("?????", place.getPUMSIndustry());
+        Place places = mapper.readValue(response, Place.class);
+        assertNotNull(places);
+        assertEquals("5415", places.getData().get(0).getIDPUMSIndustry());
     }
 
 }
