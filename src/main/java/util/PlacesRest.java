@@ -12,6 +12,7 @@ import org.apache.logging.log4j.Logger;
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -30,8 +31,8 @@ import org.json.simple.parser.ParseException;
 public class PlacesRest {
     private final Logger logger = LogManager.getLogger(this.getClass());
     private final String tempIndustry = "5415"; //Computer Systems Design, because why not, right?
-    private final int MIN_POPULATION = 1000;
-    private final int MIN_RECORD_COUNT = 20;
+    private final int MIN_POPULATION = 500;
+    private final int MIN_RECORD_COUNT = 10;
     private List<PlaceDataItem> placesData;
 
     public PlacesRest() {
@@ -45,7 +46,9 @@ public class PlacesRest {
      */
     private void getPlaces(String industryId) throws Exception {
         String mainString = "https://datausa.io/api/data?";
-        String query = "PUMS%2520Industry=5415&drilldowns=PUMA&measure=Total Population,ygipop RCA,Record Count";
+        String query = "PUMS%2520Industry="
+                + industryId
+                + "&drilldowns=PUMA&measure=Total Population,ygipop RCA,Record Count";
         String url = mainString + URLEncoder.encode(query, StandardCharsets.UTF_8);
         logger.info(url);
         Client client = ClientBuilder.newClient();
@@ -62,8 +65,8 @@ public class PlacesRest {
      * @return our formatted json data
      * @throws Exception
      */
-    private JSONArray putPlaceNameStateAndPopulationIntoJSON() throws Exception {
-        getPlaces(tempIndustry);
+    private JSONArray putPlaceNameStateAndPopulationIntoJSON(String industryId) throws Exception {
+        getPlaces(industryId);
         JSONArray sortedJSON = null;
         Set<String> sortedSet = new TreeSet<>();
         DecimalFormat df = new DecimalFormat("#.####"); //for formatting of companies per capita to usable sig figures
@@ -113,7 +116,7 @@ public class PlacesRest {
     @GET
     @Path("/places")
     @Produces(MediaType.APPLICATION_JSON)
-    public JSONArray returnJSON() throws Exception{
-        return putPlaceNameStateAndPopulationIntoJSON();
+    public JSONArray returnJSON(@QueryParam("industry") String industryId) throws Exception{
+        return putPlaceNameStateAndPopulationIntoJSON(industryId);
     }
 }
