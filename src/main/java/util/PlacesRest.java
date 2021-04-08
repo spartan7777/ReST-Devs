@@ -1,11 +1,9 @@
 package util;
 
-import java.math.MathContext;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.*;
-import java.lang.Math;
 import matc.edu.entity.Place;
 import matc.edu.entity.PlaceDataItem;
 import org.apache.logging.log4j.LogManager;
@@ -21,7 +19,6 @@ import javax.ws.rs.core.MediaType;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
@@ -34,11 +31,7 @@ public class PlacesRest {
 
     //TODO remove this logic from constructor once main method no longer needed
     public PlacesRest() {
-//        try {
-//            getPlaces(tempIndustry);
-//        } catch (Exception e) {
-//            logger.info(e);
-//        }
+
 
     }
 
@@ -57,8 +50,6 @@ public class PlacesRest {
     }
 
     private JSONArray putPlaceNameStateAndPopulationIntoJSON() throws Exception {
-//        PlaceGetter placeGetter = new PlaceGetter();
-//        placesData = placeGetter.getPlacesData();
         getPlaces(tempIndustry);
         JSONArray sortedJSON = null;
         Set<String> sortedSet = new TreeSet<>();
@@ -106,10 +97,5 @@ public class PlacesRest {
     @Produces(MediaType.APPLICATION_JSON)
     public JSONArray returnJSON() throws Exception{
         return putPlaceNameStateAndPopulationIntoJSON();
-    }
-
-    public static void main(String[] args) throws Exception{
-        PlacesRest test = new PlacesRest();
-        test.putPlaceNameStateAndPopulationIntoJSON();
     }
 }
