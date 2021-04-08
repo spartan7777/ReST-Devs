@@ -1,0 +1,167 @@
+Enterprise Java Spring 2021: TEAM JOURNAL RECORDS
+
+Team Name: ReSt Devs
+Team Members: Rob Adams, Sydney St. Clair, Tosan Ogedengbe
+Team Project: Vocation By Location
+
+
+JOURNAL ENTRY #1 - March 30, 2021
+Attendees: Rob, Sydney, Tosan.
+
+This is a journal entry that covers the team meeting activities from 3/30/2021. 
+
+1. Went through the team agenda provided by Rob in Slack.
+
+2. The main goal was to discuss and work on how to complete the feedback points left by the instructor. 
+
+3. Selected a team records keeper.
+	- Tosan volunteered for this role.
+
+4. Discussed updating the team ReadMe to meet Paula's feedback.
+	- The ReadMe was updated by Tosan at 10:02 pm on 3/30.
+	- Rob would check to see if this was done before reaching back out to Paula. 
+
+5. Discussed shaving down the project plan and removing all references to MVC that were in there.
+	- Rob stated he would cover this.
+	- He would let Paula know once these changes were completed. 
+
+6. Established a new meeting time: Mondays at 5:30 pm.
+
+7. Rob let us all know that the materials from Week 8 and 9 were essential to getting this project done.
+
+8. Discussion points for item #3 were held off on. 
+	These were the inner workings of the project: POJOs, Endpoints, Query Parameters, etc. 
+	We would wait until all team members had completed and read all materials from Weeks 8 & 9.
+
+9. Rob made some suggestions on where we go next:
+	Once we all complete Week 9 we should all see how we would tackle this problem.
+	Then we can compare all the ideas that we have and see what we come up with.
+
+10. Sydney stepped into some the tasks:
+	Will look into ROBOPOJO.
+	Will see what kind of Classes she can create to sort out the data we have.
+	Create the POJOs needed for the project. 
+
+11. Team discussed the proposed project flow to make sure we were all on the same page.
+
+12. *Meeting Ends*
+
+
+
+JOURNAL ENTRY #2 - April 5, 2021
+Attendees: Rob, Sydney, Tosan.
+
+This is a journal entry that covers the team meeting activities from 4/5/2021. 
+
+1. The team decided prior in a Slack message that we would collaborate on each other's VM and other technical issues to get these out of the way.
+	This was agreed to, and we started work with Sydney's VM to see what issues she had. 
+
+2. We noted at the start of the meeting that Sydney was having problems pushing her latest work (all the POJOs) to our repository in git. 
+	Through discussion, we were able to fix that and found it was just the use of an errant command. 
+	She was able to push her material up to the repository and they were all in great shape. 
+
+3. We worked on some issues in the pom.xml file to see why we had problems with some of the imported packages not being recognized.
+	The concern was that we had some missing dependencies, and if we could find and add them the imports would work.
+	We found these and the needed properties and added them into the pom.xml file - no changes. 
+	Rob tested this in his VM, and the issue remained. Sydney noted that we were getting some errors messages associated with the artifact id.
+	We fixed this by removing the space in the team’s name (Rest Devs) that was in the artifact id section in the pom. 
+		- All that mess was because of that space. 
+		- BECAUSE OF ONE SINGLE. SOLITARY. LOUSY. SPACE...!!!!
+
+4. Planned to meet again later this week to see how things are coming together.
+	Agreed upon time: Thursday April 8, 2021 at 5:30 pm.
+
+5. Discussed the next steps for the project that we needed in place by April 8th.
+	a. Need some unit tests created and added to the project - assigned to Tosan.
+	b. Created the Rest Service that will use the POJOs - assigned to Rob.
+	c. Get an HTML page set up for the service. A basic index.html file where we can indicate what we offer - assigned to Sydney.
+	d. Create and assemble all the documentation for the project - assigned to Tosan.
+
+6. Discussed the time frame, due date and where we are in the project.
+	We felt that we were in a good place and will be just fine if we are all able to complete our assignments by the 8th. 
+
+7. We discussed a few more tail end issues to make sure we were all on the same page.
+	a. We discussed the Week 10 work.
+	b. Discussed that branching is going to be key and it was decided that no team would make changes on the main branch.
+	c. We would all use our own branches to add and pull materials from the project repository.
+
+8. Question and Answer round brought about some final questions about the test classes and what these would need to be testing. 
+	We had a lot of classes and needed to be sure we were testing the right ones.
+	Verified where the file would go.
+	Verified what it would look like as we would not have a traditional DAO for this project. 
+
+9. Meeting closed with the next one set to take place April 8th at 5:30 pm. 
+
+10. *Meeting Ends*
+
+
+JOURNAL ENTRY #3 - April 6, 2021
+Attendees: Rob, Tosan.
+
+This is a journal entry that covers the class activities from 4/6/2021. 
+While not a designated meeting time for the team, breakout rooms were provided so we took advantage of that. 
+
+1. The team project was discussed at length again to help Tosan get a real grasp on what was being created.
+
+2. Tosan had been struggling with the idea that this was not a traditional application.
+	Reasons for this were because some assumptions had been made on what the project would be.
+	In reality, there was no database, and no "site" where a user would go to consume this service.
+	It was a bit abstract, so Rob took the time to define and clear things up. 
+
+3. Unit test work that Tosan had created was discussed.
+	The code for the test class was done and provided to Rob to look at through Slack as notepad files.
+	Rob looked it over and saw that what we needed was there and the code stubs looked good. 
+	The URI that will be used for the testing (where we are gettign our data from) was talked about and provided so that it could be added to the test class code. 
+	The test class code will be completed and pushed to repository before the next meeting. 
+
+4. Documentation for the project was discussed next.
+	Tosan had studied many examples of API documentation and saw that they all had a few things in common.
+	The attempt for our documentation would be to break down the project information into easy to digest "chapters".
+	Chapters were discussed and it was finalized that we would use the following ones:
+		i. Overview - A place to describe what we are doing and why.
+		ii. User Guide - A place to explain what you need to use the service and what you will get back.
+		iii. Examples - A place to show what a successful request looks like and explain all that is received.
+		iv. Resources - A place to give credit to the source we get our data from and provide to our users. 
+	We had discussed a possible "Tutorial" section where we could explain using screenshots how to use the service.
+	 	- It was determined that something like this was not needed for the intended user base of the service. 
+
+5. Tosan figured that we could use his "ignorance" of how this project is really going to work to get details of the project.
+		- In essence, Tosan would "interview" Rob to get a clear idea of all the project entailed.
+	We did this: And Tosan was able to ask Rob questions as though he was a first time user (and not a developer) of the service. 
+	We delved into what the project was, why it exists, who it was developed for, etc. 
+	Notes were taken, and the answers recorded. These answers would be used to form the root of the documentation.
+
+6. *Meeting Ends* 
+	With the next one still scheduled to take place April 8th at 5:30 pm.
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
