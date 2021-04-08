@@ -35,7 +35,8 @@ public class IndustriesRest {
         industryData = resultList.getData();
     }
 
-    private void putIndustryNameIdAndAvgWageIntoJSON() {
+    private JSONArray putIndustryNameIdAndAvgWageIntoJSON() {
+        JSONArray sortedJSON = null;
         try {
             getIndustries(); //method gets all industries and puts them in instance variable industryData
             Set<String> sortedSet = new TreeSet<>(); //TreeSet used for natural-order sorting
@@ -57,12 +58,19 @@ public class IndustriesRest {
                 sortedSet.add(jsonObjectString);
             }
             JSONParser parser = new JSONParser();
-            JSONArray sortedJSON = (JSONArray) parser.parse(sortedSet.toString());
+            sortedJSON = (JSONArray) parser.parse(sortedSet.toString());
             logger.info("Sorted json " + sortedJSON);
+
         } catch (Exception e) {
             logger.info(e);
         }
+        return sortedJSON;
     }
+
+    public void getIndustryJSON() {
+
+    }
+
     public static void main(String[] args) {
         IndustriesRest test = new IndustriesRest();
         test.putIndustryNameIdAndAvgWageIntoJSON();
