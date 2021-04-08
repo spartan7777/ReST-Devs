@@ -18,13 +18,13 @@ public class TestServiceClient {
     public void testIndustryDataItemJSON() throws Exception {
         Client client = ClientBuilder.newClient();
         WebTarget target =
-                client.target("https://datausa.io/api/data?PUMS%20Industry=INDUSTRY&drilldowns=PUMA&measure=Total%20Population,ygipop%20RCA,Record%20Count");
+                client.target("https://datausa.io/api/data?measure=Average%20Wage&drilldowns=Industry%20Group&Year=2019");
         String response = target.request(MediaType.APPLICATION_JSON).get(String.class);
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        IndustryDataItem industry = mapper.readValue(response, IndustryDataItem.class);
-        assertNotNull(industry);
-        assertEquals("?????", industry.getIndustryGroup());
+        Industry industries = mapper.readValue(response, Industry.class);
+        assertNotNull(industries);
+        assertEquals("112", industries.getData().get(1).getiDIndustryGroup());
     }
 
     @Test
