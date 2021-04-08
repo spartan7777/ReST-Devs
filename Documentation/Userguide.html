@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>ReST Devs Documentation: Overview</title>
+		<meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" type="text/css" href="Documentation.css" />
+	</head>
+	
+	<body>
+		<style> body {
+		background-image: url('backgroundimage.jpg'); 
+		background-attachment: fixed; 
+		background-repeat: no-repeat; 
+		background-size: cover;}
+		</style>
+	
+		<div class="sidepanel">
+		<section class="options">
+		
+			<div id="welcome" class="buttons1">
+				<a href="Documentation.html">Welcome</a>
+			</div> 
+			<br>
+			
+			<div id="overview" class="buttons2">
+				<a href="Overview.html">Overview</a>
+			</div> 
+			<br>
+			
+			<div id="userguide" class="buttons3">  
+				<a href="Userguide.html">User Guide</a>
+			</div>  
+			<br>
+			 
+			<div id="examples" class="buttons4">
+				<a href="Examples.html">Examples</a>
+			</div>  
+			<br>
+			  
+			<div id="resources" class="buttons5">
+				<a href="Resources.html">Resources</a>
+			</div>
+			
+		</section>			
+		</div>
+
+		<div id="UserguideDocument">
+		    <h1>USER GUIDE</h1>
+		</div>
+
+		<h2>How Does Someone Use Vocation By Location?</h2>
+		<div class="text">
+			<p>Vocation By Location is a REST Service. 
+			<br>The user will need to send an HTTP GET requests to use the service. It does not matter what language they use to send this request. 
+			<br>The responses from this service will come back as JSON Objects. 
+			<br>No Authentication of any kind is needed.</p>
+
+			<p>In order to use the service, ****go to our site located here: xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx*****
+			<br>Once there, you will be able to send requests and receive responses to those requests. 
+			<br>
+			<br>You will need to send at least two requests through our service to get the desired results.
+			<br>*****Do we talk them through how to use our site and send the request? Those steps could go here*****</p>
+
+			<p><span style="font-weight:bold">You Send:</span>
+			<br>A session will require two HTTP GET requests: 
+			<br>1. An HTTP GET request looking for the industry.
+			<br>2. An HTTP GET request looking for the locations.</p>  
+
+			<p><span style="font-weight:bold">You Receive:</span>
+			<br>A session will return a list of JSON objects for each request. 
+			<br>1. A JSON Object that contains the industry name and its corresponding id.
+			<br><span style="margin-left: 50px">JSON Object for Industry: {industry name, id}.</span>
+			<br>2. A JSON Object that contains the location name and its corresponding state, and population. 
+			<br><span style="margin-left: 50px">JSON Object for Location: {location name, state, population}.</span></p>
+			<br>
+			<p>*****Do they receive any messages of any kind?*****</p>
+			<br>			
+		</div>			
+				
+	</body>
+	
+</html> 
