@@ -1,6 +1,8 @@
 package util;
 
 import java.math.MathContext;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.*;
 import java.lang.Math;
@@ -9,6 +11,9 @@ import matc.edu.entity.PlaceDataItem;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.ws.rs.GET;
+import javax.ws.rs.Path;
+import javax.ws.rs.Produces;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -29,19 +34,24 @@ public class PlacesRest {
 
     //TODO remove this logic from constructor once main method no longer needed
     public PlacesRest() {
-        try {
-            getPlaces(tempIndustry);
-        } catch (Exception e) {
-            logger.info(e);
-        }
+//        try {
+//            getPlaces(tempIndustry);
+//        } catch (Exception e) {
+//            logger.info(e);
+//        }
 
     }
 
-    public void getPlaces(String industryId) throws Exception {
+    private void getPlaces(String industryId) throws Exception {
+        String mainString = "https://datausa.io/api/data?";
+        String query = "PUMS%20Industry=5415&drilldowns=PUMA&measure=Total Population,ygipop RCA,Record Count";
+        String url = mainString + URLEncoder.encode(query, StandardCharsets.UTF_8);
         String targetString =
-                "https://datausa.io/api/data?PUMS%20Industry=" +
-                        industryId +
-                        "&drilldowns=PUMA&measure=Total%20Population,ygipop%20RCA,Record%20Count";
+                "https://datausa.io/api/data"
+                        + "?PUMS%20Industry="
+                        + industryId
+                        + "&drilldowns=PUMA&measure=Total%20Population,ygipop%20RCA,Record%20Count";
+        logger.info(url);
         Client client = ClientBuilder.newClient();
         WebTarget target =
                 client.target(targetString);
@@ -51,7 +61,9 @@ public class PlacesRest {
         placesData = resultList.getData();
     }
 
-    private void putPlaceNameStateAndPopulationIntoJSON() {
+    private JSONArray putPlaceNameStateAndPopulationIntoJSON() throws Exception {
+        getPlaces(tempIndustry);
+        JSONArray sortedJSON = null;
         Set<String> sortedSet = new TreeSet<>();
         DecimalFormat df = new DecimalFormat("#.####"); //for formatting of companies per capita to usable sig figures
         for (PlaceDataItem place : placesData) {
@@ -84,14 +96,22 @@ public class PlacesRest {
         }
         JSONParser parser = new JSONParser();
         try {
-            JSONArray sortedJSON = (JSONArray) parser.parse(sortedSet.toString());
+            sortedJSON = (JSONArray) parser.parse(sortedSet.toString());
             logger.info("Sorted json " + sortedJSON);
         } catch (ParseException e) {
             logger.info(e);
         }
+        return sortedJSON;
     }
 
-    public static void main(String[] args) {
+    @GET
+    @Path("/places")
+    @Produces(MediaType.APPLICATION_JSON)
+    public JSONArray returnJSON() throws Exception{
+        return putPlaceNameStateAndPopulationIntoJSON();
+    }
+
+    public static void main(String[] args) throws Exception{
         PlacesRest test = new PlacesRest();
         test.putPlaceNameStateAndPopulationIntoJSON();
     }
