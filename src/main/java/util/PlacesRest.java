@@ -44,17 +44,12 @@ public class PlacesRest {
 
     private void getPlaces(String industryId) throws Exception {
         String mainString = "https://datausa.io/api/data?";
-        String query = "PUMS%20Industry=5415&drilldowns=PUMA&measure=Total Population,ygipop RCA,Record Count";
+        String query = "PUMS%2520Industry=5415&drilldowns=PUMA&measure=Total Population,ygipop RCA,Record Count";
         String url = mainString + URLEncoder.encode(query, StandardCharsets.UTF_8);
-        String targetString =
-                "https://datausa.io/api/data"
-                        + "?PUMS%20Industry="
-                        + industryId
-                        + "&drilldowns=PUMA&measure=Total%20Population,ygipop%20RCA,Record%20Count";
         logger.info(url);
         Client client = ClientBuilder.newClient();
         WebTarget target =
-                client.target(targetString);
+                client.target(url);
         String response = target.request(MediaType.APPLICATION_JSON).get(String.class);
         ObjectMapper mapper = new ObjectMapper();
         Place resultList = mapper.readValue(response, Place.class);
@@ -62,6 +57,8 @@ public class PlacesRest {
     }
 
     private JSONArray putPlaceNameStateAndPopulationIntoJSON() throws Exception {
+//        PlaceGetter placeGetter = new PlaceGetter();
+//        placesData = placeGetter.getPlacesData();
         getPlaces(tempIndustry);
         JSONArray sortedJSON = null;
         Set<String> sortedSet = new TreeSet<>();
