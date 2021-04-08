@@ -22,6 +22,11 @@ import org.json.simple.JSONArray;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+
+/**
+ * This class contains the methods for retrieving, formatting, and returning place data
+ * @author Robert Adams
+ */
 public class PlacesRest {
     private final Logger logger = LogManager.getLogger(this.getClass());
     private final String tempIndustry = "5415"; //Computer Systems Design, because why not, right?
@@ -29,12 +34,15 @@ public class PlacesRest {
     private final int MIN_RECORD_COUNT = 20;
     private List<PlaceDataItem> placesData;
 
-    //TODO remove this logic from constructor once main method no longer needed
     public PlacesRest() {
-
 
     }
 
+    /**
+     * Gets place data from consumed service. Sets placesData list as returned result.
+     * @param industryId id of the industry to search
+     * @throws Exception
+     */
     private void getPlaces(String industryId) throws Exception {
         String mainString = "https://datausa.io/api/data?";
         String query = "PUMS%2520Industry=5415&drilldowns=PUMA&measure=Total Population,ygipop RCA,Record Count";
@@ -49,6 +57,11 @@ public class PlacesRest {
         placesData = resultList.getData();
     }
 
+    /**
+     * Formats, sorts, and returns json data
+     * @return our formatted json data
+     * @throws Exception
+     */
     private JSONArray putPlaceNameStateAndPopulationIntoJSON() throws Exception {
         getPlaces(tempIndustry);
         JSONArray sortedJSON = null;
@@ -92,6 +105,11 @@ public class PlacesRest {
         return sortedJSON;
     }
 
+    /**
+     * Returns the data for REST
+     * @return our data
+     * @throws Exception
+     */
     @GET
     @Path("/places")
     @Produces(MediaType.APPLICATION_JSON)
