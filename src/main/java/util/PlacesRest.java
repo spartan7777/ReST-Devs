@@ -37,17 +37,6 @@ public class PlacesRest {
 
     }
 
-    public void returnJSON() {
-        String industryId = tempIndustry;
-        JSONArray json = null;
-        try {
-            getPlaces(tempIndustry);
-            putPlaceNameStateAndPopulationIntoJSON();
-        } catch (Exception e) {
-            logger.info(e);
-        }
-    }
-
     public void getPlaces(String industryId) throws Exception {
         String targetString =
                 "https://datausa.io/api/data?PUMS%20Industry=" +
@@ -66,7 +55,7 @@ public class PlacesRest {
         Set<String> sortedSet = new TreeSet<>();
         DecimalFormat df = new DecimalFormat("#.####"); //for formatting of companies per capita to usable sig figures
         for (PlaceDataItem place : placesData) {
-            //Weeds out negligible results and keeps our things manageable
+            //Weeds out negligible results and keeps our results manageable
             if ((place.getTotalPopulation() > MIN_POPULATION) && (place.getRecordCount() > MIN_RECORD_COUNT)) {
                 //Create JSON string
                 String jsonObjectString = "{"
