@@ -11,6 +11,9 @@ import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.Path;
+import javax.ws.rs.GET;
+import javax.ws.rs.Produces;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.simple.parser.JSONParser;
@@ -67,8 +70,11 @@ public class IndustriesRest {
         return sortedJSON;
     }
 
-    public void getIndustryJSON() {
-
+    @GET
+    @Path("/industries")
+    @Produces(MediaType.APPLICATION_JSON)
+    public JSONArray getIndustryJSON() {
+        return putIndustryNameIdAndAvgWageIntoJSON();
     }
 
     public static void main(String[] args) {
