@@ -31,13 +31,8 @@ import org.json.simple.parser.ParseException;
 public class PlacesRest {
     private final Logger logger = LogManager.getLogger(this.getClass());
     private final String tempIndustry = "5415"; //Computer Systems Design, because why not, right?
-<<<<<<< HEAD
-    private final int MIN_POPULATION = 500;
-    private final int MIN_RECORD_COUNT = 10;
-=======
     private final int MIN_POPULATION = 5000;
     private final int MIN_RECORD_COUNT = 20;
->>>>>>> REST-service-branch
     private List<PlaceDataItem> placesData;
 
     public PlacesRest() {
