@@ -30,7 +30,7 @@ import org.json.simple.parser.ParseException;
 public class PlacesRest {
     private final Logger logger = LogManager.getLogger(this.getClass());
     private final String tempIndustry = "5415"; //Computer Systems Design, because why not, right?
-    private final int MIN_POPULATION = 1000;
+    private final int MIN_POPULATION = 5000;
     private final int MIN_RECORD_COUNT = 20;
     private List<PlaceDataItem> placesData;
 
@@ -87,9 +87,9 @@ public class PlacesRest {
                         + "\""
                         + place.getRecordCount()
                         + "\""
-                        + ", \"Companies Per Capita\": "
+                        + ", \"Companies Per Thousand People\": "
                         + "\""
-                        + df.format(((double) place.getRecordCount() / (double) place.getTotalPopulation()))
+                        + df.format(((double) place.getRecordCount() / (double) place.getTotalPopulation()) * 1000)
                         + "\""
                         + "}}";
                 sortedSet.add(jsonObjectString);
