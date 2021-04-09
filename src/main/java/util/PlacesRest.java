@@ -30,9 +30,8 @@ import org.json.simple.parser.ParseException;
  */
 public class PlacesRest {
     private final Logger logger = LogManager.getLogger(this.getClass());
-    private final String tempIndustry = "5415"; //Computer Systems Design, because why not, right?
-    private final int MIN_POPULATION = 1000;
-    private final int MIN_RECORD_COUNT = 20;
+    private final int YEAR = 2019;
+    private final int NUM_PEOPLE = 1000;
     private List<PlaceDataItem> placesData;
 
     public PlacesRest() {
@@ -73,28 +72,34 @@ public class PlacesRest {
         Set<String> sortedSet = new TreeSet<>();
         DecimalFormat df = new DecimalFormat("#.####"); //for formatting of companies per capita to usable sig figures
         for (PlaceDataItem place : placesData) {
+            String name = place.getPUMA().substring(0, place.getPUMA().length() - 9);//takes state abbrev and PUMA off
+            String state = place.getPUMA().substring((place.getPUMA().length() - 2));//gets state abbrev
+            int pop = place.getTotalPopulation();
+            int records = place.getRecordCount();
+            int year = place.getIDYear();
+            String recordsPer = df.format(((double) records / (double) pop) * NUM_PEOPLE);
             //Weeds out negligible results and keeps our results manageable
-            if ((place.getTotalPopulation() > Integer.parseInt(minPop)) && (place.getRecordCount() > Integer.parseInt(minJobs))) {
+            if ((pop >= Integer.parseInt(minPop)) && (records >= Integer.parseInt(minJobs)) && (year == YEAR)) {
                 //Create JSON string
                 String jsonObjectString = "{"
                         + "\""
-                        + place.getPUMA().substring(0, place.getPUMA().length() - 9) //takes state abbrev and PUMA off
+                        + name + ", " + state
                         + "\""
                         + ": {\"State\": "
                         + "\""
-                        + place.getPUMA().substring((place.getPUMA().length() - 2)) //gets state abbrev
+                        + state
                         + "\""
                         + ", \"Population\": "
                         + "\""
-                        + place.getTotalPopulation()
+                        + pop
                         + "\""
                         + ", \"Record Count\": "
                         + "\""
-                        + place.getRecordCount()
+                        + records
                         + "\""
                         + ", \"Companies Per Thousand People\": "
                         + "\""
-                        + df.format(((double) place.getRecordCount() / (double) place.getTotalPopulation()) * 1000)
+                        + recordsPer
                         + "\""
                         + "}}";
                 sortedSet.add(jsonObjectString);
@@ -122,7 +127,7 @@ public class PlacesRest {
             @QueryParam("industry") String industryId,
             @QueryParam("minPopulation") String minPopulation,
             @QueryParam("minJobs") String minJobs
-                ) throws Exception{
+    ) throws Exception{
         return putPlaceNameStateAndPopulationIntoJSON(industryId, minPopulation, minJobs);
     }
 }
