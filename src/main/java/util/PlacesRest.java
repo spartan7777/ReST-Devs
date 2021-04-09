@@ -64,11 +64,23 @@ public class PlacesRest {
      * @return our formatted json data
      * @throws Exception exception
      */
-    private JSONArray putPlaceNameStateAndPopulationIntoJSON(String industryId, String minPop, String minJobs) throws Exception {
+    private JSONArray getJSON(String industryId, String minPop, String minJobs) throws Exception {
         if (minPop == null) { minPop = "0"; }
         if (minJobs == null) { minJobs = "0"; }
         getPlaces(industryId);
         JSONArray sortedJSON = null;
+        Set<String> sortedSet = putEachPlaceIntoSet(minPop, minJobs);
+        JSONParser parser = new JSONParser();
+        try {
+            sortedJSON = (JSONArray) parser.parse(sortedSet.toString());
+            logger.info("Sorted json " + sortedJSON);
+        } catch (ParseException e) {
+            logger.info(e);
+        }
+        return sortedJSON;
+    }
+
+    private Set<String> putEachPlaceIntoSet(String minPop, String minJobs) {
         Set<String> sortedSet = new TreeSet<>();
         DecimalFormat df = new DecimalFormat("#.####"); //for formatting of companies per capita to usable sig figures
         for (PlaceDataItem place : placesData) {
@@ -81,38 +93,36 @@ public class PlacesRest {
             //Weeds out negligible results and keeps our results manageable
             if ((pop >= Integer.parseInt(minPop)) && (records >= Integer.parseInt(minJobs)) && (year == YEAR)) {
                 //Create JSON string
-                String jsonObjectString = "{"
-                        + "\""
-                        + name + ", " + state
-                        + "\""
-                        + ": {\"State\": "
-                        + "\""
-                        + state
-                        + "\""
-                        + ", \"Population\": "
-                        + "\""
-                        + pop
-                        + "\""
-                        + ", \"Record Count\": "
-                        + "\""
-                        + records
-                        + "\""
-                        + ", \"Companies Per Thousand People\": "
-                        + "\""
-                        + recordsPer
-                        + "\""
-                        + "}}";
-                sortedSet.add(jsonObjectString);
+                sortedSet.add(buildJSONString(name, state, pop, records, recordsPer));
             }
         }
-        JSONParser parser = new JSONParser();
-        try {
-            sortedJSON = (JSONArray) parser.parse(sortedSet.toString());
-            logger.info("Sorted json " + sortedJSON);
-        } catch (ParseException e) {
-            logger.info(e);
-        }
-        return sortedJSON;
+        return sortedSet;
+    }
+
+
+    private String buildJSONString(String name, String state, int pop, int records, String recordsPer) {
+        String jsonString = "{"
+                + "\""
+                + name + ", " + state
+                + "\""
+                + ": {\"State\": "
+                + "\""
+                + state
+                + "\""
+                + ", \"Population\": "
+                + "\""
+                + pop
+                + "\""
+                + ", \"Record Count\": "
+                + "\""
+                + records
+                + "\""
+                + ", \"Companies Per Thousand People\": "
+                + "\""
+                + recordsPer
+                + "\""
+                + "}}";
+        return jsonString;
     }
 
     /**
@@ -128,6 +138,6 @@ public class PlacesRest {
             @QueryParam("minPopulation") String minPopulation,
             @QueryParam("minJobs") String minJobs
     ) throws Exception{
-        return putPlaceNameStateAndPopulationIntoJSON(industryId, minPopulation, minJobs);
+        return getJSON(industryId, minPopulation, minJobs);
     }
 }
