@@ -65,14 +65,16 @@ public class PlacesRest {
      * @return our formatted json data
      * @throws Exception
      */
-    private JSONArray putPlaceNameStateAndPopulationIntoJSON(String industryId) throws Exception {
+    private JSONArray putPlaceNameStateAndPopulationIntoJSON(String industryId, String minPop, String minJobs) throws Exception {
+        if (minPop == null) { minPop = "0"; }
+        if (minJobs == null) { minJobs = "0"; }
         getPlaces(industryId);
         JSONArray sortedJSON = null;
         Set<String> sortedSet = new TreeSet<>();
         DecimalFormat df = new DecimalFormat("#.####"); //for formatting of companies per capita to usable sig figures
         for (PlaceDataItem place : placesData) {
             //Weeds out negligible results and keeps our results manageable
-            if ((place.getTotalPopulation() > MIN_POPULATION) && (place.getRecordCount() > MIN_RECORD_COUNT)) {
+            if ((place.getTotalPopulation() > Integer.parseInt(minPop)) && (place.getRecordCount() > Integer.parseInt(minJobs))) {
                 //Create JSON string
                 String jsonObjectString = "{"
                         + "\""
@@ -121,6 +123,6 @@ public class PlacesRest {
             @QueryParam("minPopulation") String minPopulation,
             @QueryParam("minJobs") String minJobs
                 ) throws Exception{
-        return putPlaceNameStateAndPopulationIntoJSON(industryId);
+        return putPlaceNameStateAndPopulationIntoJSON(industryId, minPopulation, minJobs);
     }
 }
