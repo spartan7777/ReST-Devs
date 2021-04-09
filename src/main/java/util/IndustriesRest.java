@@ -70,6 +70,10 @@ public class IndustriesRest {
         return sortedJSON;
     }
 
+    /**
+     * Loops through each industry, formats them, and puts them into a sorted set
+     * @return the sorted set of all industries
+     */
     private Set<String> putAllIndustriesIntoSet() {
         Set<String> sortedSet = new TreeSet<>();
         //Create string containing our data to be converted into JSON.
@@ -84,6 +88,13 @@ public class IndustriesRest {
         return sortedSet;
     }
 
+    /**
+     * builds the friendly, formatted json string returned by our service
+     * @param name inustry name
+     * @param id industry id
+     * @param avgWage industry average wage
+     * @return
+     */
     private String buildJSONString(String name, String id, Double avgWage) {
         return "{"
                 + "\""
