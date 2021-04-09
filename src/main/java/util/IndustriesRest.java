@@ -85,7 +85,7 @@ public class IndustriesRest {
     }
 
     private String buildJSONString(String name, String id, Double avgWage) {
-        String jsonObjectString = "{"
+        return "{"
                 + "\""
                 + name
                 + "\""
@@ -98,7 +98,6 @@ public class IndustriesRest {
                 + avgWage
                 + "\""
                 + "}}";
-        return jsonObjectString;
     }
 
     /**
