@@ -116,7 +116,11 @@ public class PlacesRest {
     @GET
     @Path("/places")
     @Produces(MediaType.APPLICATION_JSON)
-    public JSONArray returnJSON(@QueryParam("industry") String industryId) throws Exception{
+    public JSONArray returnJSON(
+            @QueryParam("industry") String industryId,
+            @QueryParam("minPopulation") String minPopulation,
+            @QueryParam("minJobs") String minJobs
+                ) throws Exception{
         return putPlaceNameStateAndPopulationIntoJSON(industryId);
     }
 }
