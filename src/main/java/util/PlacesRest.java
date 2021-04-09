@@ -41,7 +41,7 @@ public class PlacesRest {
     /**
      * Gets place data from consumed service. Sets placesData list as returned result.
      * @param industryId id of the industry to search
-     * @throws Exception
+     * @throws Exception exception
      */
     private void getPlaces(String industryId) throws Exception {
         String mainString = "https://datausa.io/api/data?";
@@ -62,7 +62,7 @@ public class PlacesRest {
     /**
      * Formats, sorts, and returns json data
      * @return our formatted json data
-     * @throws Exception
+     * @throws Exception exception
      */
     private JSONArray putPlaceNameStateAndPopulationIntoJSON(String industryId, String minPop, String minJobs) throws Exception {
         if (minPop == null) { minPop = "0"; }
@@ -118,7 +118,7 @@ public class PlacesRest {
     /**
      * Returns the data for REST
      * @return our data
-     * @throws Exception
+     * @throws Exception exception
      */
     @GET
     @Path("/places")
