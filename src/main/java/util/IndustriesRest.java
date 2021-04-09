@@ -54,45 +54,51 @@ public class IndustriesRest {
      * Formats consumed data into friendly, sorted JSON
      * @return
      */
-    private JSONArray putIndustryNameIdAndAvgWageIntoJSON() {
-        JSONArray sortedJSON = null;
+    private JSONArray putIndustriesIntoJSON() {
+        JSONArray sortedJSON = new JSONArray();
         try {
-
             //gets all industries and puts them in instance variable industryData
             getIndustries();
 
             //TreeSet used for natural-order sorting
-            Set<String> sortedSet = new TreeSet<>();
-
-            for (IndustryDataItem industry : industryData) {
-                //Create string containing our data to be converted into JSON.
-                //TODO clean this up a bit - it can probably be done better
-                String jsonObjectString = "{"
-                        + "\""
-                        + industry.getIndustryGroup()
-                        + "\""
-                        + ": {\"id\": "
-                        + "\""
-                        + industry.getiDIndustryGroup()
-                        + "\""
-                        + ", \"Average Wage\": "
-                        + "\""
-                        + industry.getAverageWage()
-                        + "\""
-                        + "}}";
-
-                //Puts resulting JSON string into a sorted set - this is for alphabetical sorting
-                //since a TreeSet sorts natural order by default
-                sortedSet.add(jsonObjectString);
-            }
+            Set<String> sortedSet = putAllIndustriesIntoSet();
             JSONParser parser = new JSONParser();
             sortedJSON = (JSONArray) parser.parse(sortedSet.toString());
-            logger.info("Sorted json " + sortedJSON);
-
         } catch (Exception e) {
             logger.info(e);
         }
         return sortedJSON;
+    }
+
+    private Set<String> putAllIndustriesIntoSet() {
+        Set<String> sortedSet = new TreeSet<>();
+        //Create string containing our data to be converted into JSON.
+        //Put resulting JSON strings into a sorted set
+        for (IndustryDataItem industry : industryData) {
+            String industryName = industry.getIndustryGroup();
+            String industryId = industry.getiDIndustryGroup();
+            Double averageWage = industry.getAverageWage();
+            String jsonObjectString = buildJSONString(industryName, industryId, averageWage);
+            sortedSet.add(jsonObjectString);
+        }
+        return sortedSet;
+    }
+
+    private String buildJSONString(String name, String id, Double avgWage) {
+        String jsonObjectString = "{"
+                + "\""
+                + name
+                + "\""
+                + ": {\"id\": "
+                + "\""
+                + id
+                + "\""
+                + ", \"Average Wage\": "
+                + "\""
+                + avgWage
+                + "\""
+                + "}}";
+        return jsonObjectString;
     }
 
     /**
@@ -103,7 +109,7 @@ public class IndustriesRest {
     @Path("/industries")
     @Produces(MediaType.APPLICATION_JSON)
     public JSONArray getIndustryJSON() {
-        return putIndustryNameIdAndAvgWageIntoJSON();
+        return putIndustriesIntoJSON();
     }
 
 }
