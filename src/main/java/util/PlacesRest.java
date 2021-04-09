@@ -34,6 +34,9 @@ public class PlacesRest {
     private final int NUM_PEOPLE = 1000;
     private List<PlaceDataItem> placesData;
 
+    /**
+     * constructor
+     */
     public PlacesRest() {
 
     }
@@ -80,7 +83,13 @@ public class PlacesRest {
         return sortedJSON;
     }
 
-    private Set<String> putEachPlaceIntoSet(String minPop, String minJobs) {
+    /**
+     * Loops through each place, formats, and puts into sorted set
+     * @param minPop minimum population
+     * @param minCompanies minimum companies
+     * @return
+     */
+    private Set<String> putEachPlaceIntoSet(String minPop, String minCompanies) {
         Set<String> sortedSet = new TreeSet<>();
         DecimalFormat df = new DecimalFormat("#.####"); //for formatting of companies per capita to usable sig figures
         for (PlaceDataItem place : placesData) {
@@ -91,7 +100,7 @@ public class PlacesRest {
             int year = place.getIDYear();
             String recordsPer = df.format(((double) records / (double) pop) * NUM_PEOPLE);
             //Weeds out negligible results and keeps our results manageable
-            if ((pop >= Integer.parseInt(minPop)) && (records >= Integer.parseInt(minJobs)) && (year == YEAR)) {
+            if ((pop >= Integer.parseInt(minPop)) && (records >= Integer.parseInt(minCompanies)) && (year == YEAR)) {
                 //Create JSON string
                 sortedSet.add(buildJSONString(name, state, pop, records, recordsPer));
             }
@@ -99,7 +108,15 @@ public class PlacesRest {
         return sortedSet;
     }
 
-
+    /**
+     * Builds the JSON string to be returned by our service
+     * @param name place name
+     * @param state place state
+     * @param pop place population
+     * @param records number of records (companies)
+     * @param recordsPer records (companies) per specified number of people
+     * @return
+     */
     private String buildJSONString(String name, String state, int pop, int records, String recordsPer) {
         String jsonString = "{"
                 + "\""
