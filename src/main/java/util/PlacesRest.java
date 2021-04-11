@@ -67,7 +67,7 @@ public class PlacesRest {
      * @return our formatted json data
      * @throws Exception exception
      */
-    private JSONArray getJSON(String industryId, String minPop, String minJobs) throws Exception {
+    public JSONArray getJSON(String industryId, String minPop, String minJobs) throws Exception {
         if (minPop == null) { minPop = "0"; }
         if (minJobs == null) { minJobs = "0"; }
         getPlaces(industryId);

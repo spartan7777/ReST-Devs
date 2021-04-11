@@ -54,7 +54,7 @@ public class IndustriesRest {
      * Formats consumed data into friendly, sorted JSON
      * @return
      */
-    private JSONArray putIndustriesIntoJSON() {
+    public JSONArray putIndustriesIntoJSON() {
         JSONArray sortedJSON = new JSONArray();
         try {
             //gets all industries and puts them in instance variable industryData
