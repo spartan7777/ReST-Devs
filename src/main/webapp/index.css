@@ -1,0 +1,155 @@
+
+.sidepanel {
+    height: 100%;
+    width: 200px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #e6ccb3;
+    overflow-x: hidden;
+    padding-top: 20px;
+	font-weight: bold;
+	font-family: Times;
+	
+}
+
+.buttons1 {
+    width: 125px;
+	border: 7px solid purple;
+	margin: 15 px;
+	padding: 10px;
+	margin-left: -10px;
+}	
+
+.buttons2 {
+    width: 125px;
+	border: 7px solid green;
+	margin: 15 px;
+	padding: 10px;
+	margin-left: -10px;
+}	
+
+.buttons3 {
+    width: 125px;
+	border: 7px solid blue;
+	margin: 15 px;
+	padding: 10px;
+	margin-left: -10px;
+	
+}	
+
+.buttons4 {
+    width: 125px;
+	border: 7px solid gold;
+	margin: 15 px;
+	padding: 10px;
+	margin-left: -10px;
+}	
+
+.buttons5 {
+    width: 125px;
+	border: 7px solid red;
+	margin: 15 px;
+	padding: 10px;
+	margin-left: -10px;
+}	
+
+.options {
+    padding: 6px 6px 6px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #ffffff;
+    display: block;
+}
+
+#welcome :hover {
+    color: #6600cc;
+}
+
+#overview :hover {
+    color: #006600;
+}
+
+#userguide :hover {
+    color: #0000ff;
+}
+
+#examples :hover {
+    color: #ffd633;
+}
+
+#resources :hover {
+    color: #e60000;
+}
+
+#WelcomeDocument {
+    margin-left: 205px; 
+	margin-top: 25px;
+	text-align: center;
+    width: 1650px;
+	border: 15px solid purple;
+}
+
+#OverviewDocument {
+    margin-left: 205px; 
+	margin-top: 25px;
+	text-align: center;
+    width: 1650px;
+	border: 15px solid green;
+}
+
+#UserguideDocument {
+    margin-left: 205px; 
+	margin-top: 25px;
+	text-align: center;
+    width: 1650px;
+	border: 15px solid blue;
+}
+
+#ExampleDocument {
+    margin-left: 205px; 
+	margin-top: 25px;
+	text-align: center;
+    width: 1650px;
+	border: 15px solid gold;
+}
+
+#ResourceDocument {
+    margin-left: 205px; 
+	margin-top: 25px;
+	text-align: center;
+    width: 1650px;
+	border: 15px solid red;
+}
+
+h1 {
+	font-size: 125px;
+	font-family: Georgia;	
+	font-weight: bold;
+	margin: 60px;
+    padding: 0px;
+    line-height: 0;
+}
+
+h2 {
+	font-size: 30px;
+	font-family: Georgia;	
+	font-weight: bold;
+	margin-left: 200px;
+    padding: 10px;
+    line-height: 0;
+	text-align: left;
+}
+
+.text {
+    margin-left: 210px; 
+	font-size: 21px;
+	text-align: left;
+}
+
+#overviewspan {
+	font-style: bold;
+	
+}
+
