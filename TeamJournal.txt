@@ -66,7 +66,7 @@ This is a journal entry that covers the team meeting activities from 4/5/2021.
 	Rob tested this in his VM, and the issue remained. Sydney noted that we were getting some errors messages associated with the artifact id.
 	We fixed this by removing the space in the team’s name (Rest Devs) that was in the artifact id section in the pom. 
 		- All that mess was because of that space. 
-		- BECAUSE OF ONE SINGLE. SOLITARY. LOUSY. SPACE...!!!!
+		- BECAUSE OF ONE SINGLE. SOLITARY. LOUSY. #$%^&@**. SPACE...!!!!
 
 4. Planned to meet again later this week to see how things are coming together.
 	Agreed upon time: Thursday April 8, 2021 at 5:30 pm.
@@ -98,30 +98,31 @@ This is a journal entry that covers the team meeting activities from 4/5/2021.
 JOURNAL ENTRY #3 - April 6, 2021
 Attendees: Rob, Tosan.
 
-This is a journal entry that covers the class activities from 4/6/2021. 
+This is a journal entry that covers the class activities from a Break Out Room on 4/6/2021. 
 While not a designated meeting time for the team, breakout rooms were provided so we took advantage of that. 
 
 1. The team project was discussed at length again to help Tosan get a real grasp on what was being created.
 
-2. Tosan had been struggling with the idea that this was not a traditional application.
-	Reasons for this were because some assumptions had been made on what the project would be.
+2. Tosan asked for some additional clarification on how the project would work as this was not a traditional application.
+	Reasons for this were because some assumptions had been made on his part on what the project would be.
 	In reality, there was no database, and no "site" where a user would go to consume this service.
 	It was a bit abstract, so Rob took the time to define and clear things up. 
 
 3. Unit test work that Tosan had created was discussed.
 	The code for the test class was done and provided to Rob to look at through Slack as notepad files.
 	Rob looked it over and saw that what we needed was there and the code stubs looked good. 
-	The URI that will be used for the testing (where we are gettign our data from) was talked about and provided so that it could be added to the test class code. 
+	The URI that will be used for the testing (where we are getting our data from) was talked about and provided so that it could be added to the test class code. 
 	The test class code will be completed and pushed to repository before the next meeting. 
 
 4. Documentation for the project was discussed next.
 	Tosan had studied many examples of API documentation and saw that they all had a few things in common.
 	The attempt for our documentation would be to break down the project information into easy to digest "chapters".
 	Chapters were discussed and it was finalized that we would use the following ones:
-		i. Overview - A place to describe what we are doing and why.
-		ii. User Guide - A place to explain what you need to use the service and what you will get back.
-		iii. Examples - A place to show what a successful request looks like and explain all that is received.
-		iv. Resources - A place to give credit to the source we get our data from and provide to our users. 
+		i. Welcome - A home landing page with an introduction to the service and the docunetation itself. 
+		ii. Overview - A place to describe what we are doing and why.
+		iii. User Guide - A place to explain what you need to use the service and what you will get back.
+		iv. Examples - A place to show what a successful request looks like and explain all that is received.
+		v. Resources - A place to give credit to the source we get our data from and provide to our users. 
 	We had discussed a possible "Tutorial" section where we could explain using screenshots how to use the service.
 	 	- It was determined that something like this was not needed for the intended user base of the service. 
 
@@ -129,38 +130,103 @@ While not a designated meeting time for the team, breakout rooms were provided s
 		- In essence, Tosan would "interview" Rob to get a clear idea of all the project entailed.
 	We did this: And Tosan was able to ask Rob questions as though he was a first time user (and not a developer) of the service. 
 	We delved into what the project was, why it exists, who it was developed for, etc. 
-	Notes were taken, and the answers recorded. These answers would be used to form the root of the documentation.
+	Notes were taken, and the answers recorded. 
+	Tosan would use these answers to form the root of the documentation.
 
-6. *Meeting Ends* 
-	With the next one still scheduled to take place April 8th at 5:30 pm.
+6. *Break Out Room Session Ends* 
+	With the next Team Meeting still scheduled to take place April 8th at 5:30 pm.
 
+
+JOURNAL ENTRY #4 - April 8, 2021
+Attendees: Rob, Sydney, Tosan.
+
+This is a journal entry that covers the team meeting activities from 4/8/2021. 
+
+1. Some project work had been done and discussed through Slack prior to the meeting. 
+	Comments and notes were shared to resolve a few issues and continue with the troubleshooting.
+	Rob was able to get the REST service working. He indicated that he did have some bugs that were painful to correct, but these things were overcome. 
+
+2. Some changes were discussed and could be added:
+	a. We would like to give users the ability to order the data they get back by specific parameters....
+		for example: returning industries by average wage low-to-high, and stuff like this.
+		He was able to set that up in Java, and this was discussed. 
+	b. We felt it would be possible to allow users to filter results.....
+		for example: only getting data if certain criteria are met, such as populations over a certain number, or industries over a certain average wage. 
+	c. This is definitely possible, but could be time-consuming. 
+	d. Should the team agree, we would add that to the project. 
+		The team discussed it and agreed to add this in.	
+		Rob wanted to try to incorporate this into the code.
+
+3. There were some issues with the tests. 
+	The target URL provided for industries and place were incorrect. 
+		Tosan updated the code with these changes.
+	The classes we were targeting for testing were also incorrect. 
+		Tosan updated the code with these changes. 
+
+4. Documentation was reviewed. 
+	Some changes needed to be made.
+	The files were placed in the project webapp folder. 
+	The main page was renamed to index.html.
+	There was some incorrect information in the User Guide section of the documentation.
+		Examples were provided in the meeting to clear things up.
+	Tosan made all of the requested changes to the documentation files. 
+		We will look into making additional corrections as a team on Monday.
+		There is the option to update this all week up until that final meeting.
+
+
+5. The POJOS seemed to need a little updating.
+	The names of a few of the POJOs were a little confusing. 
+		a. Place and Industry don't represent a single place and a single industry, but rather collections of all the data from their sources.
+		b. We looked into refactoring those into something more descriptive.
+	Sydeny made these updates top the POJO code. 
+
+6. At the meeting, discussed the potential confusion for the Industry and Place variables. 
+
+7. Demo: Rob ran a live demo of the service for us to see it working beforehand.
+	- Saw the project in action.
+	- Went to a web page.
+	- Typed in our url [Rest_devs/war/api/industries].
+	- A get request was sent and we got back an array of JSON objects with industry names and ids.
+	- He used the objects to get the industry id and added this to the next query string to get a place for that industry. 
+	- He typed in a new request for place using the industry id as a parameter in that request [Rest_devs/war/api/places?(industry id)].
+	- He got back another array of JSON objects with places, populations and wages included. 
+
+8. Went over the user guide process for complete team understanding and to note down the user process for documentation.
+	The results were: 
+	1. Go to a tool like SOAP.
+	2. Put in the industry request [Rest_devs/war/api/industries].
+	3. Get back the JSON objects for the industries.
+	4. Locate the industry id from the result.
+	5. Put in the place request [Rest_devs/war/api/places?(industry id)].	 
+	6. Get back the JSON objects for the places that have a tie to that industry.
+
+9. It was noted that there were constants in the code to limit the search results.	
+	They were set up for population and for total records to be brought back.	
+	Discussions were had about all these to be made into parameters to allow more user control over the result set. 
+	Rob indicated he would like to try to add this if there was time before project deadline. 
+		Looking to make population and record count parameters to allow for more user control of the results. 
+		He would also look to see if he could set it up so that results could be filtered and sorted:
+			Alphabetically by state, 
+			And by population (low to high, or vice versa)
+
+10. The AWS EC2 instance needed for this project was discussed.
+	Sydney stepped in to create that for the project.
+
+11. *Meeting Ends*
 
 	
+JOURNAL ENTRY # - April 9 thru April 11, 2021
+Attendees: Rob, Sydney, Tosan through Slack.
 
+1. With communication through Slack some other items were discussed.
+	Rob had completed the adjustments he wanted to try to add to the project.
+	Sydney had completed breaking the POJO classes down to more reradable easier to understand methods.
+	
+2. The Test Classes were adjusted and taken care of.
+	Tosan was assigned the task to now create tests for the data we would be getting back.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+3. The documentation would be changed to relfect all that the site would be for the users. 
+	This would be looked at and handled on Monday. 
 
 
 
