@@ -52,30 +52,36 @@
 		<h2>How Does Someone Use Vocation By Location?</h2>
 		<div class="text">
 			<p>Vocation By Location is a REST Service. 
-			<br>The user will need to send an HTTP GET requests to use the service. It does not matter what language they use to send this request. 
-			<br>These requests will be secure (https).
-			<br>The responses from this service will come back as JSON Objects. 
-			<br>No Authentication of any kind is needed.</p>
-
-			<p>In order to use the service, go to our site located here: <a href=https://datausa.io/>https://ourcompany.com</a>
-			<br>Once there, you will be able to send requests and receive responses to those requests. 
 			<br>
-			<br>You will need to send at least two requests through our service to get the desired results.
-			<br>*****Do we talk them through how to use our site and send the request? Those steps could go here*****</p>
+			<br>The user will need to send HTTP GET requests to use the service. 
+			<br>It does not matter what language they use to send these requests. 
+			<br>These requests will be secure (https).
+			<br>
+			<br>The responses from this service will come back as JSON Objects. 
+			<br>
+			<br>No Authentication of any kind is needed to use the service.</p>
+
+			<p>Our service is located here: <a href=https://datausa.io/>https://ourcompany.com</a>
+			<br>From here you can send requests and receive responses to those requests. 
+			<br>
 
 			<p><span style="font-weight:bold">You Send:</span>
-			<br>A session will require two HTTP GET requests: 
-			<br>1. An HTTP GET request looking for the industry.
-			<br>2. An HTTP GET request looking for the locations.</p>  
+			<br>A session will need at least two http get requests through our service to get the desired results.			
+			<br>
+			<br>1. An HTTP GET request looking for a selected industry.
+			<br><span style="margin-left: 50px">An http Industry Get Request for the service: (https://ourcompany.com/api/industries)
+			<br>
+			<br>2. An HTTP GET request looking for the places where that industry is located.
+			<br><span style="margin-left: 50px">An http Place Get Request for the service: (https://ourcompany.com/api/places?industry=(industry id))</p>
 
 			<p><span style="font-weight:bold">You Receive:</span>
 			<br>A session will return a list of JSON objects for each request. 
-			<br>1. A JSON Object that contains the industry name and its corresponding id.
-			<br><span style="margin-left: 50px">JSON Object for Industry: {industry name, id}.</span>
-			<br>2. A JSON Object that contains the location name and its corresponding state, and population. 
-			<br><span style="margin-left: 50px">JSON Object for Location: {location name, state, population}.</span></p>
 			<br>
-			<p>*****Do they receive any messages of any kind?*****</p>
+			<br>1. A JSON Object that contains the industry name, the average wage, and its corresponding id.
+			<br><span style="margin-left: 50px">JSON Object returned for Industry: {industry name, average wage, id}.</span>
+			<br>
+			<br>2. A JSON Object that contains the place name and its corresponding state, and population. 
+			<br><span style="margin-left: 50px">JSON Object returned for Place: {place name, companies per 1,000 people, state, population}.</span></p>
 			<br>			
 		</div>			
 				

@@ -215,18 +215,35 @@ This is a journal entry that covers the team meeting activities from 4/8/2021.
 11. *Meeting Ends*
 
 	
-JOURNAL ENTRY # - April 9 thru April 11, 2021
+JOURNAL ENTRY #5 - April 9 thru April 11, 2021
 Attendees: Rob, Sydney, Tosan through Slack.
 
 1. With communication through Slack some other items were discussed.
 	Rob had completed the adjustments he wanted to try to add to the project.
 	Sydney had completed breaking the POJO classes down to more reradable easier to understand methods.
-	
-2. The Test Classes were adjusted and taken care of.
-	Tosan was assigned the task to now create tests for the data we would be getting back.
+	The original Test Classes were adjusted and taken care of.
+	The correct urls were added and the tests passed. 
 
-3. The documentation would be changed to relfect all that the site would be for the users. 
-	This would be looked at and handled on Monday. 
+2. New Test Classes were suggested to test the method we use to get data back for the users. 
+	Tosan was assigned the task to now create tests for the data we would be getting back.
+	Reached out to Rob for further discussion on what to test for, and what these tests needed.
+		Was discussed in a 1 hour Google meeting between the two of them on the afternoon of 4/11.
+
+3. Tosan was having problems deploying the webpage that contained our service locally in his VM.
+	Rob assisted on this and help troubleshoot during the meeting.
+	It was discivered that Tosan's configuration was missing some few items:
+		i. The url that was needed for the index.html page for the project to get pulled up was incorrect.
+		ii. There was no 'Build Artifact Maven Goal' to build the ReSTDevs:war artifcat in the configuration.
+		iii. The Deployment needed to reference the RestDevs:war and build this at deployment.
+	Troubleshooting between the two of them was successful and Tosan was able to deploy the proper web pages locally. 
+
+4. The documentation would be changed to relfect all that the site would be for the users. 
+	Tosan would go through and edit all of the pages so that they stated the proper things as to how the service worked. 
+		Made appropriate changes to some of the language.
+		Utilized the service and collected some JSON results to add as examopes into the documentation. 
+	A Slack message would go out to the rest of the team once this was completed.
+		Any additional proofreading and editing for the documentation would be looked at and handled on Monday. 
+
 
 
 
