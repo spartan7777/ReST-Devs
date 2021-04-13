@@ -4,7 +4,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.DecimalFormat;
 import java.util.*;
-import matc.edu.entity.Place;
+import matc.edu.entity.Places;
 import matc.edu.entity.PlaceDataItem;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -58,7 +58,7 @@ public class PlacesRest {
                 client.target(url);
         String response = target.request(MediaType.APPLICATION_JSON).get(String.class);
         ObjectMapper mapper = new ObjectMapper();
-        Place resultList = mapper.readValue(response, Place.class);
+        Places resultList = mapper.readValue(response, Places.class);
         placesData = resultList.getData();
     }
 
@@ -67,12 +67,13 @@ public class PlacesRest {
      * @return our formatted json data
      * @throws Exception exception
      */
-    public JSONArray getJSON(String industryId, String minPop, String minJobs) throws Exception {
+    public JSONArray getJSON(String industryId, String minPop, String minJobs, String maxPop) throws Exception {
         if (minPop == null) { minPop = "0"; }
         if (minJobs == null) { minJobs = "0"; }
+        if (maxPop == null) { maxPop = "330000000";}
         getPlaces(industryId);
         JSONArray sortedJSON = null;
-        Set<String> sortedSet = putEachPlaceIntoSet(minPop, minJobs);
+        Set<String> sortedSet = putEachPlaceIntoSet(minPop, minJobs, maxPop);
         JSONParser parser = new JSONParser();
         try {
             sortedJSON = (JSONArray) parser.parse(sortedSet.toString());
@@ -89,7 +90,7 @@ public class PlacesRest {
      * @param minCompanies minimum companies
      * @return
      */
-    private Set<String> putEachPlaceIntoSet(String minPop, String minCompanies) {
+    private Set<String> putEachPlaceIntoSet(String minPop, String minCompanies, String maxPop) {
         Set<String> sortedSet = new TreeSet<>();
         DecimalFormat df = new DecimalFormat("#.####"); //for formatting of companies per capita to usable sig figures
         for (PlaceDataItem place : placesData) {
@@ -100,7 +101,8 @@ public class PlacesRest {
             int year = place.getIDYear();
             String recordsPer = df.format(((double) records / (double) pop) * NUM_PEOPLE);
             //Weeds out negligible results and keeps our results manageable
-            if ((pop >= Integer.parseInt(minPop)) && (records >= Integer.parseInt(minCompanies)) && (year == YEAR)) {
+
+            if ((pop >= Integer.parseInt(minPop)) && (pop <= Integer.parseInt(maxPop)) && (records >= Integer.parseInt(minCompanies)) && (year == YEAR)) {
                 //Create JSON string
                 sortedSet.add(buildJSONString(name, state, pop, records, recordsPer));
             }
@@ -153,8 +155,9 @@ public class PlacesRest {
     public JSONArray returnJSON(
             @QueryParam("industry") String industryId,
             @QueryParam("minPopulation") String minPopulation,
-            @QueryParam("minJobs") String minJobs
+            @QueryParam("minJobs") String minJobs,
+            @QueryParam("maxPopulation") String maxPopulation
     ) throws Exception{
-        return getJSON(industryId, minPopulation, minJobs);
+        return getJSON(industryId, minPopulation, minJobs, maxPopulation);
     }
 }

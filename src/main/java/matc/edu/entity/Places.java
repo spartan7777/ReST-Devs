@@ -3,7 +3,7 @@ package matc.edu.entity;
 import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Place {
+public class Places {
 
 	@JsonProperty("data")
 	private List<PlaceDataItem> data;

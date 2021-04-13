@@ -2,10 +2,7 @@ package matc.edu.entity;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import matc.edu.entity.Industry;
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
-import java.util.*;
 
 import javax.ws.rs.client.*;
 import javax.ws.rs.core.MediaType;
@@ -22,7 +19,7 @@ public class TestServiceClient {
         String response = target.request(MediaType.APPLICATION_JSON).get(String.class);
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        Industry industries = mapper.readValue(response, Industry.class);
+        Industries industries = mapper.readValue(response, Industries.class);
         assertNotNull(industries);
         assertEquals("112", industries.getData().get(1).getiDIndustryGroup());
     }
@@ -35,7 +32,7 @@ public class TestServiceClient {
         String response = target.request(MediaType.APPLICATION_JSON).get(String.class);
         ObjectMapper mapper = new ObjectMapper();
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-        Place places = mapper.readValue(response, Place.class);
+        Places places = mapper.readValue(response, Places.class);
         assertNotNull(places);
         assertEquals("5415", places.getData().get(0).getIDPUMSIndustry());
     }
