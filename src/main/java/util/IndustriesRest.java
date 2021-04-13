@@ -56,15 +56,16 @@ public class IndustriesRest {
      * Formats consumed data into friendly, sorted JSON
      * @return
      */
-    public JSONArray putIndustriesIntoJSON(String minWage) {
+    public JSONArray putIndustriesIntoJSON(String minWage, String maxWage) {
         if (minWage == null) { minWage = "0"; }
+        if (maxWage == null) { maxWage = "1000000"; }
         JSONArray sortedJSON = new JSONArray();
         try {
             //gets all industries and puts them in instance variable industryData
             getIndustries();
 
             //TreeSet used for natural-order sorting
-            Set<String> sortedSet = putAllIndustriesIntoSet(minWage);
+            Set<String> sortedSet = putAllIndustriesIntoSet(minWage, maxWage);
             JSONParser parser = new JSONParser();
             sortedJSON = (JSONArray) parser.parse(sortedSet.toString());
         } catch (Exception e) {
@@ -77,7 +78,7 @@ public class IndustriesRest {
      * Loops through each industry, formats them, and puts them into a sorted set
      * @return the sorted set of all industries
      */
-    private Set<String> putAllIndustriesIntoSet(String minWage) {
+    private Set<String> putAllIndustriesIntoSet(String minWage, String maxWage) {
         Set<String> sortedSet = new TreeSet<>();
         //Create string containing our data to be converted into JSON.
         //Put resulting JSON strings into a sorted set
@@ -85,7 +86,7 @@ public class IndustriesRest {
             String industryName = industry.getIndustryGroup();
             String industryId = industry.getiDIndustryGroup();
             Double averageWage = industry.getAverageWage();
-            if (averageWage >= Double.parseDouble(minWage)) {
+            if ((averageWage >= Double.parseDouble(minWage)) && (averageWage <= Double.parseDouble(maxWage))) {
                 String jsonObjectString = buildJSONString(industryName, industryId, averageWage);
                 sortedSet.add(jsonObjectString);
             }
@@ -123,8 +124,8 @@ public class IndustriesRest {
     @GET
     @Path("/industries")
     @Produces(MediaType.APPLICATION_JSON)
-    public JSONArray getIndustryJSON(@QueryParam("minWage") String minWage) {
-        return putIndustriesIntoJSON(minWage);
+    public JSONArray getIndustryJSON(@QueryParam("minWage") String minWage, @QueryParam("maxWage") String maxWage) {
+        return putIndustriesIntoJSON(minWage, maxWage);
     }
 
 }
