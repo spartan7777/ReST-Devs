@@ -25,6 +25,24 @@ public class TestResults {
         assertEquals(expected, actual);
     }
 
+//    @Test
+//   void testGetJSON() throws Exception {
+//        PlacesRest places = new PlacesRest();
+//        String industryId = Integer.toString(44);
+//        String minPop = Integer.toString(114412);
+//        String minJobs = Integer.toString(0);
+//        String maxPop = Integer.toString(0);
+//        JSONArray results = places.getJSON(industryId, minPop, minJobs, maxPop);
+//        String expected =
+//                "{\"Aberdeen & Havre de Grace Cities, MD\":{\"Companies Per Thousand People\":\"9.3784\",\"State\":\"MD\",\"Record Count\":\"1073\",\"Population\":\"114412\"}}";
+//        String actual = results.get(0).toString();
+//        assertEquals(expected, actual);
+//    }
+
+    //@Test
+    //void returnJSON() {
+    //}
+
     //@Test
     //@JsonIgnoreProperties(ignoreUnknown = true)
     //public void testGetJSON() throws Exception {
