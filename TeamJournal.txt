@@ -245,6 +245,45 @@ Attendees: Rob, Sydney, Tosan through Slack.
 		Any additional proofreading and editing for the documentation would be looked at and handled on Monday. 
 
 
+JOURNAL ENTRY #6 - April 12, 2021
+Attendees: Rob, Sydney, Tosan.
+
+1. Started meeting wit a discussion about sorting the data for users.
+	It was decided that users can do this themselves, as they may have a desired method for this.
+	Filtering would remain in place.
+
+2. There were some issues with the EC2 instance in AWS.
+	Sydney was able to solve these.
+	This was due to some missed steps in the setup process.
+
+3. The documentation was looked at, and would go through final review.
+
+4. Presenation disucssion was handled.
+	We utilized an outline for who would handle what parts of the presentation.
+	Time limits were discussed to make sure the presenation does not go over the allotted time.
+	Small scripts would be created by each team member to cover the parts they would discuss. 
+	Rob would be the 'main' presenter and share the screen for the class to see. 
+	We would send him our scripts so he would have an idea of how to share the project while we go through our talking points. 
+		Problem we're solving: Rob ~ 3 minutes
+		Demonstration of Service: Rob ~ 2-3 minutes
+		User Docs: Tosan ~ 3 minutes
+		Code Walkthrough:
+			-POJOs: Sydney ~ 2 minutes
+			-REST (getting and outputting the data): Rob ~ 2 minutes
+			-REST (sorting and filtering): Sydney ~ 2 minutes
+			-Tests: Tosan ~ 2 minutes
+		Challenges and Key Learning Points ~ 3 minutes
+			- Each team member would select top 2 or 3 learning points and challenges to share.
+
+5. The project Plan was looked at and we verified that we hit all the items on it.
+
+6. Project Deployment:
+	The project url was officially deployed in AWS to verify that it does indeed work.
+	There were some issues when this first occurred.
+		Troubleshooting began to find out what could be the problem.
+		Through checking the pom.xml and the AWS instance, we were able to get the service up and running.
+
+7. *Meeting Ends*
 
 
 
