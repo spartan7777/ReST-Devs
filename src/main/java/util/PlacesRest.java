@@ -67,13 +67,13 @@ public class PlacesRest {
      * @return our formatted json data
      * @throws Exception exception
      */
-    public JSONArray getJSON(String industryId, String minPop, String minJobs, String maxPop) throws Exception {
+    public JSONArray getJSON(String industryId, String minPop, String minCompanies, String maxPop) throws Exception {
         if (minPop == null) { minPop = "0"; }
-        if (minJobs == null) { minJobs = "0"; }
+        if (minCompanies == null) { minCompanies = "0"; }
         if (maxPop == null) { maxPop = "330000000";}
         getPlaces(industryId);
         JSONArray sortedJSON = null;
-        Set<String> sortedSet = putEachPlaceIntoSet(minPop, minJobs, maxPop);
+        Set<String> sortedSet = putEachPlaceIntoSet(minPop, minCompanies, maxPop);
         JSONParser parser = new JSONParser();
         try {
             sortedJSON = (JSONArray) parser.parse(sortedSet.toString());
@@ -155,9 +155,9 @@ public class PlacesRest {
     public JSONArray returnJSON(
             @QueryParam("industry") String industryId,
             @QueryParam("minPopulation") String minPopulation,
-            @QueryParam("minJobs") String minJobs,
+            @QueryParam("minCompanies") String minCompanies,
             @QueryParam("maxPopulation") String maxPopulation
     ) throws Exception{
-        return getJSON(industryId, minPopulation, minJobs, maxPopulation);
+        return getJSON(industryId, minPopulation, minCompanies, maxPopulation);
     }
 }
