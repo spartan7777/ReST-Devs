@@ -52,23 +52,23 @@
 		<h2>What Is Vocation By Location?</h2>
 		<div class="text">
 			<p>Vocation by Location provides a geographical concentration data of industries in the US. 
-			<br>It is a service designed to help the user find an industry, and then use that indusrty to find locations in the US where that industry is thriving based on population.</p>
+			<br>It is a service designed to help the user find an industry, and then use that industry to find locations in the US where that industry is thriving based on population.</p>
 			<br>
 		</div>
 
 		<h2>How Does Vocation By Location Work?</h2> 
 		<div class="text">			
-			<p>Our servcie does three things:
+			<p>Our service does three things:
 				<ol>
-					<li>Reaches out to a Servcie to get the requested data.</li>
+					<li>Reaches out to a Service to get the requested data.</li>
 					<li>Processes this data to make it more user friendly.</li>
 					<li>Brings this back to the user so that they can utilize it.</li>
 			<br>We provide a URI to process these requests. 
 			<br>There are two endpoints for the requests made through our service.
 				<ul>
-					<br><li>Industries: Endpoint denoted by (https://ourcompany.com/api/industries)</li>
+					<br><li>Industries: Endpoint denoted by http://13.58.130.252:8080/ReST_Devs/api/industries</li>
 					<br>Or<br>
-					<br><li>Places: Endpoint denoted by (https://ourcompany.com/api/places?industry=(industry id))</li>
+					<br><li>Places: Endpoint denoted by http://13.58.130.252:8080/ReST_Devs/api/places?industry=(industry id)</li>
 				</ul>	
 			<br>A user sends a request to receive a list of industries. Each industry result that we provide will have an industry name and an id associated with it. 
 			<br>The user will then take the id that they have and pass this into the URI from our site. 
