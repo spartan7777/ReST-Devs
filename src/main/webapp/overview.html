@@ -63,23 +63,24 @@
 					<li>Reaches out to a Service to get the requested data.</li>
 					<li>Processes this data to make it more user friendly.</li>
 					<li>Brings this back to the user so that they can utilize it.</li>
+				</ol>
 			<br>We provide a URI to process these requests. 
-			<br>There are two endpoints for the requests made through our service.
+			<br>There are two paths for the requests made through our service.
 				<ul>
-					<br><li>Industries: Endpoint denoted by http://13.58.130.252:8080/ReST_Devs/api/industries</li>
+					<br><li>Industries: http://13.58.130.252:8080/ReST_Devs/api/industries</li>
 					<br>Or<br>
-					<br><li>Places: Endpoint denoted by http://13.58.130.252:8080/ReST_Devs/api/places?industry=(industry id)</li>
+					<br><li>Places: http://13.58.130.252:8080/ReST_Devs/api/places?industry={Some industry id}</li>
 				</ul>	
 			<br>A user sends a request to receive a list of industries. Each industry result that we provide will have an industry name and an id associated with it. 
-			<br>The user will then take the id that they have and pass this into the URI from our site. 
-			<br>This will get them a list of locations that feature the highest concentrations for that industry in the US.</p>
+			<br>The user will then take the id that they have and pass this into the Places URI from our site as a query parameter. (Please refer to our <a href="userguide.html">User Guide</a> for more info on supported query parameters.)
+			<br>This will get them a list of locations that feature that industry in the US.</p>
 			<br>
 		</div>
 			
 		<h2>Who Is Vocation By Location Designed For?</h2>
 		<div class="text">
-			<p>This service is geared towards anyone that would need this kind of data for an application, or a project or even a job search. 
-			<br>You just need our site and to have a working knoweldge of how to send an Http request. 
+			<p>This service is geared towards anyone that would need this kind of data for an application, or a project, or even a job search.
+			<br>You just need our site and to have a working knowledge of how to send an Http request.
 			<br>
 		</div>
 				

@@ -57,32 +57,42 @@
 			<br>It does not matter what language they use to send these requests. 
 			<br>These requests will be secure (https).
 			<br>
-			<br>The responses from this service will come back as JSON Objects. 
+			<br>The responses from this service will come back as JSON.
 			<br>
 			<br>No Authentication of any kind is needed to use the service.</p>
 
-			<p>Our service is located here: <a href=http://13.58.130.252:8080/ReST_Devs/>https://ReST_Devs.com</a>
-			<br>From here you can send requests and receive responses to those requests. 
+			<p>Our service is located here: http://13.58.130.252:8080/ReST_Devs/api/
+			<br>From here you can send requests and receive responses to those requests.
 			<br>
 
 			<p><span style="font-weight:bold">You Send:</span>
-			<br>A session will need at least two http get requests through our service to get the desired results.			
+			<br>We provide two endpoints to get the desired results.
 			<br>
 			<br>1. An HTTP GET request looking for a selected industry.
-			<br><span style="margin-left: 50px">An http Industry Get Request for the service: http://13.58.130.252:8080/ReST_Devs/api/industries
-			<br>
+			<br><br> /industries
+			<br><br>With the following optional parameters:
+				<ul>
+					<li>minWage - OPTIONAL, minimum industry average wage</li>
+					<li>maxWage - OPTIONAL, maximum industry average wage</li>
+				</ul>
 			<br>2. An HTTP GET request looking for the places where that industry is located.
-			<br><span style="margin-left: 50px">An http Place Get Request for the service: http://13.58.130.252:8080/ReST_Devs/api/places?industry=(industry id))</p>
+				<br><br>/places?industry={industry id}</p>
+
+			<br><br> With the following parameters:
+				<ul>
+					<li>industry - REQUIRED, an industry id returned from the previous query</li>
+					<li>minPopulation - OPTIONAL, the minimum population of each place</li>
+					<li>maxPopulation - OPTIONAL, the maximum population of each place</li>
+					<li>minCompanies - OPTIONAL, the minimum number of companies located in each place</li>
+				</ul>
 
 			<p><span style="font-weight:bold">You Receive:</span>
 			<br>A session will return a list of JSON objects for each request. 
 			<br>
 			<br>1. A JSON Object that contains the industry name, the average wage, and its corresponding id.
-			<br><span style="margin-left: 50px">JSON Object returned for Industry: {industry name, average wage, id}.</span>
 			<br>
-			<br>2. A JSON Object that contains the place name and its corresponding state, and population. 
-			<br><span style="margin-left: 50px">JSON Object returned for Place: {place name, companies per 1,000 people, state, population}.</span></p>
-			<br>			
+			<br>2. A JSON Object that contains the place name and its corresponding state, and population
+			<br>
 		</div>			
 				
 	</body>
