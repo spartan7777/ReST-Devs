@@ -3,10 +3,12 @@ package util;
 import java.util.*;
 
 import matc.edu.entity.IndustryDataItem;
-import matc.edu.entity.Industry;
+import matc.edu.entity.Industries;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONArray;
+
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
@@ -46,7 +48,7 @@ public class IndustriesRest {
                 client.target(targetString);
         String response = target.request(MediaType.APPLICATION_JSON).get(String.class);
         ObjectMapper mapper = new ObjectMapper();
-        Industry resultList = mapper.readValue(response, Industry.class);
+        Industries resultList = mapper.readValue(response, Industries.class);
         industryData = resultList.getData();
     }
 
@@ -54,14 +56,15 @@ public class IndustriesRest {
      * Formats consumed data into friendly, sorted JSON
      * @return
      */
-    public JSONArray putIndustriesIntoJSON() {
+    public JSONArray putIndustriesIntoJSON(String minWage) {
+        if (minWage == null) { minWage = "0"; }
         JSONArray sortedJSON = new JSONArray();
         try {
             //gets all industries and puts them in instance variable industryData
             getIndustries();
 
             //TreeSet used for natural-order sorting
-            Set<String> sortedSet = putAllIndustriesIntoSet();
+            Set<String> sortedSet = putAllIndustriesIntoSet(minWage);
             JSONParser parser = new JSONParser();
             sortedJSON = (JSONArray) parser.parse(sortedSet.toString());
         } catch (Exception e) {
@@ -74,7 +77,7 @@ public class IndustriesRest {
      * Loops through each industry, formats them, and puts them into a sorted set
      * @return the sorted set of all industries
      */
-    private Set<String> putAllIndustriesIntoSet() {
+    private Set<String> putAllIndustriesIntoSet(String minWage) {
         Set<String> sortedSet = new TreeSet<>();
         //Create string containing our data to be converted into JSON.
         //Put resulting JSON strings into a sorted set
@@ -82,8 +85,10 @@ public class IndustriesRest {
             String industryName = industry.getIndustryGroup();
             String industryId = industry.getiDIndustryGroup();
             Double averageWage = industry.getAverageWage();
-            String jsonObjectString = buildJSONString(industryName, industryId, averageWage);
-            sortedSet.add(jsonObjectString);
+            if (averageWage >= Double.parseDouble(minWage)) {
+                String jsonObjectString = buildJSONString(industryName, industryId, averageWage);
+                sortedSet.add(jsonObjectString);
+            }
         }
         return sortedSet;
     }
@@ -118,8 +123,8 @@ public class IndustriesRest {
     @GET
     @Path("/industries")
     @Produces(MediaType.APPLICATION_JSON)
-    public JSONArray getIndustryJSON() {
-        return putIndustriesIntoJSON();
+    public JSONArray getIndustryJSON(@QueryParam("minWage") String minWage) {
+        return putIndustriesIntoJSON(minWage);
     }
 
 }
